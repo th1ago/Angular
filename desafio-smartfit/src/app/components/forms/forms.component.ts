@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GetUnitsService } from '../../services/get-units.service';
 import { Location } from '../../types/location.interface';
+import { FilterUnitsService } from '../../services/filter-units.service';
 
 @Component({
   selector: 'app-forms',
@@ -15,7 +16,8 @@ export class FormsComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
-    private unitService: GetUnitsService) {}
+    private unitService: GetUnitsService,
+    private filterUnitService: FilterUnitsService) {}
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -23,18 +25,16 @@ export class FormsComponent implements OnInit{
       showClosed: true
     });
     this.unitService.getAllUnits().subscribe(data => {
-      this.results = data.locations;
-      this.filteredResults = data.locations;
+      this.results = data;
+      this.filteredResults = data;
     });
   }
 
   // Filtrar pelo NAO aberto
   onSubmit(): void {
-    if(!this.formGroup.value.showClosed){
-      this.filteredResults = this.results.filter(location => location.opened == true);
-    } else {
-      this.filteredResults = this.results;
-    }
+    let { showClosed, hour } = this.formGroup.value
+    this.filteredResults = this.filterUnitService.filter(this.results, showClosed, hour);
+    this.unitService.setFilteredUnits(this.filteredResults)
   }
 
   onClean(): void {
