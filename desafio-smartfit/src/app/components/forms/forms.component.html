@@ -1,4 +1,4 @@
-<form class="form-group">
+<form class="form-group" [formGroup]="formGroup">
     <div class="form-icon">
       <img src="assets/images/icon-hour.png"/>
       Horário
@@ -27,7 +27,7 @@
       <span>Resultados encontrados: {{results.length}}</span>
     </div>
     <div class="btn-wrapper">
-      <button class="btn btn-primary">Encontrar unidade</button>
-      <button class="btn btn-secondary">Limpar</button>
+      <button class="btn btn-primary" (click)="onSubmit()">Encontrar unidade</button>
+      <button class="btn btn-secondary" (click)="onClean()">Limpar</button>
     </div>
 </form>
