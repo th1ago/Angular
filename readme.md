@@ -1,3 +1,14 @@
+# DesafiosAngular
+
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+
+> [!IMPORTANT]  
+> Now standalone applications are the default
+> To generate the app.module.ts
+> Use this command:
+> `ng new my-app --no-standalone --routing --ssr=false`
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
 
 ## Development server
